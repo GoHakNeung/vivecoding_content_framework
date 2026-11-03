@@ -239,6 +239,7 @@ table.consent-table td{padding:8px 10px;border:1px solid var(--line)}
 .cloud{font-size:.8rem;color:var(--muted);white-space:nowrap}
 .cloud.on{color:var(--ok)}
 .cloud.err{color:var(--warn);font-weight:700}
+.resp-hint{font-size:.8rem;color:var(--muted);line-height:1.45}
 .linkbtn{font:inherit;background:none;border:0;padding:0;color:var(--accent);text-decoration:underline;cursor:pointer}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 @media print{.gate,#consent,.linkbtn{display:none!important}}
@@ -259,7 +260,7 @@ table.consent-table td{padding:8px 10px;border:1px solid var(--line)}
 <button type="button" class="btn primary" data-act="submit">제출</button>
 </div><div class="scale-strip"><div class="wrap">5점 척도 <b>1</b>전혀 그렇지 않다<b>2</b>그렇지 않다<b>3</b>보통이다<b>4</b>그렇다<b>5</b>매우 그렇다</div></div></div>
 <main class="wrap">
-<section id="consent" class="sec"><h2><span class="num">동의</span>개인정보 수집·이용 동의</h2><p class="sec-lead">응답을 시작하기 전에 아래 내용을 읽고 동의 여부를 골라 주십시오.</p><div class="card"><table class="consent-table"><tbody><tr><th scope="row">수집 항목</th><td>구글 계정의 이메일·이름, 응답자 정보(성명 또는 응답자 번호, 패널 구분), 검사 응답(평정·의견)</td></tr><tr><th scope="row">이용 목적</th><td>델파이 검사 결과 분석(문항별 집단 통계)과 전문가 패널 구성 보고, 2차 검사에서 본인의 1차 응답과 집단 결과를 함께 보여 드리는 일, 작성 중인 응답의 저장과 이어서 작성</td></tr><tr><th scope="row">공개 범위</th><td>응답자별 응답은 연구자만 확인하며, 결과는 개인을 알아볼 수 없는 집단 통계로만 보고합니다.</td></tr><tr><th scope="row">보유 기간</th><td>연구 종료 후 3년간 보관한 뒤 파기합니다.</td></tr><tr><th scope="row">저장 위치</th><td>Google Firebase(Cloud Firestore, 대한민국 서울)에 저장합니다. 로그인은 Google 계정 인증으로 처리합니다.</td></tr><tr><th scope="row">동의 거부</th><td>동의하지 않으실 수 있습니다. 이 경우 검사에 참여하실 수 없으며, 그 밖의 불이익은 없습니다.</td></tr><tr><th scope="row">동의 철회</th><td>응답하는 중이나 제출한 뒤에도 연구자에게 알려 주시면 응답을 지웁니다.</td></tr><tr><th scope="row">문의</th><td>고학능, 송정중앙초등학교, snddl3@outlook.kr</td></tr></tbody></table><label class="consent-chk"><input type="checkbox" id="consent-chk"> 위 내용을 읽었으며 개인정보 수집·이용에 동의합니다.</label><div class="actions"><button type="button" class="btn primary" id="consent-ok" disabled>동의하고 시작하기</button><button type="button" class="btn" id="consent-no">동의하지 않음</button></div><div class="missing-list" id="consent-declined" hidden>동의하지 않으시면 검사에 참여하실 수 없습니다. 지금까지 아무 내용도 저장되지 않았습니다. <button type="button" class="linkbtn" data-act="signout">로그아웃</button></div><p class="meta">로그인 계정: <b data-who></b></p></div></section>
+<section id="consent" class="sec"><h2><span class="num">동의</span>개인정보 수집·이용 동의</h2><p class="sec-lead">응답을 시작하기 전에 아래 내용을 읽고 동의 여부를 골라 주십시오.</p><div class="missing-list" id="consent-redo" hidden>수집 항목에 관련 직무 경력과 휴대전화 번호(선택)가 더해져 다시 동의를 받습니다. 이미 작성하신 응답은 그대로 남아 있습니다.</div><div class="card"><table class="consent-table"><tbody><tr><th scope="row">수집 항목</th><td>구글 계정의 이메일·이름, 응답자 정보(성명 또는 응답자 번호, 패널 구분, 관련 직무 근무·연구 경력, 휴대전화 번호(선택)), 검사 응답(평정·의견)</td></tr><tr><th scope="row">이용 목적</th><td>델파이 검사 결과 분석(문항별 집단 통계)과 전문가 패널 구성 보고, 2차 검사에서 본인의 1차 응답과 집단 결과를 함께 보여 드리는 일, 작성 중인 응답의 저장과 이어서 작성, 연구를 마친 뒤 사례 제공(휴대전화 번호)</td></tr><tr><th scope="row">공개 범위</th><td>응답자별 응답은 연구자만 확인하며, 결과는 개인을 알아볼 수 없는 집단 통계로만 보고합니다.</td></tr><tr><th scope="row">보유 기간</th><td>연구 종료 후 3년간 보관한 뒤 파기합니다. 휴대전화 번호는 사례 제공을 마치면 바로 파기합니다.</td></tr><tr><th scope="row">저장 위치</th><td>Google Firebase(Cloud Firestore, 대한민국 서울)에 저장합니다. 로그인은 Google 계정 인증으로 처리합니다.</td></tr><tr><th scope="row">동의 거부</th><td>동의하지 않으실 수 있습니다. 이 경우 검사에 참여하실 수 없으며, 그 밖의 불이익은 없습니다. 휴대전화 번호는 적지 않으셔도 검사에 참여하실 수 있으나, 사례를 보내 드리기 어렵습니다.</td></tr><tr><th scope="row">동의 철회</th><td>응답하는 중이나 제출한 뒤에도 연구자에게 알려 주시면 응답을 지웁니다.</td></tr><tr><th scope="row">문의</th><td>고학능, 송정중앙초등학교, snddl3@outlook.kr</td></tr></tbody></table><label class="consent-chk"><input type="checkbox" id="consent-chk"> 위 내용을 읽었으며 개인정보 수집·이용에 동의합니다.</label><div class="actions"><button type="button" class="btn primary" id="consent-ok" disabled>동의하고 시작하기</button><button type="button" class="btn" id="consent-no">동의하지 않음</button></div><div class="missing-list" id="consent-declined" hidden><span id="consent-declined-first">동의하지 않으시면 검사에 참여하실 수 없습니다. 지금까지 아무 내용도 저장되지 않았습니다.</span><span id="consent-declined-redo" hidden>동의하지 않으시면 더 작성하실 수 없습니다. 이미 작성하신 응답을 지우기를 원하시면 연구자에게 알려 주십시오.</span> <button type="button" class="linkbtn" data-act="signout">로그아웃</button></div><p class="meta">로그인 계정: <b data-who></b></p></div></section>
 <form id="delphi" autocomplete="off" novalidate>
 <section id="guide" class="sec">
 <h2><span class="num">0</span>안내</h2>
@@ -267,12 +268,12 @@ table.consent-table td{padding:8px 10px;border:1px solid var(--line)}
 <p>본 연구는 <b>「소프트웨어 개발생애주기 관점에서 바이브코딩 교사 연수를 위한 내용체계 개발」</b>입니다. 이를 위해 컴퓨터 교육 전문가, 교육경험이 풍부한 교사, 개발자에게 전문가 검토(1차)를 의뢰하고자 합니다. 생성형 AI와 협업하여 소프트웨어를 만드는 바이브코딩 연수가 늘고 있으나, 다수가 &#x27;만들기&#x27;에서 끝나 배포·운영·보수·보안·윤리를 다루지 못하고 있습니다. 본 연구는 소프트웨어 생애주기 관점에서 교사 바이브코딩 역량의 조작적 정의와 연수 내용체계(대영역 7, 중영역 22) 시안을 마련하였으며, 그 타당성을 물어보고자 합니다.</p>
 <div class="card"><h3>한눈에 보기</h3><div class="tbl glance"><table><thead><tr><th>순서</th><th>내용</th><th>문항</th><th>답하는 방법</th></tr></thead><tbody><tr><td>먼저 읽기</td><td>이 연구에서 쓰는 말과 정의</td><td>—</td><td>답할 문항은 없습니다(읽기만 하시면 됩니다)</td></tr><tr><td>Ⅰ</td><td>바이브코딩의 정의</td><td>6문항 (Ⅰ-1~Ⅰ-6)</td><td>Ⅰ-1~Ⅰ-4는 필요/불필요, Ⅰ-5·Ⅰ-6은 동의 정도</td></tr><tr><td>Ⅱ</td><td>연수 내용 — 대영역 7 · 중영역 22</td><td>대영역 7 + 중영역 22</td><td>대영역은 중요도, 중영역은 중요도와 학교 실현가능성</td></tr><tr><td>Ⅲ</td><td>연수 수준 — 초급·중급·고급</td><td>4문항 (Ⅲ-1~Ⅲ-4)</td><td>동의 정도</td></tr><tr><td>Ⅳ</td><td>산업 기준(NCS)을 교사 수준으로 바꾼 방식</td><td>2문항 (Ⅳ-1·Ⅳ-2)</td><td>동의 정도</td></tr><tr><td>의견</td><td>의견 쓰기</td><td>5곳 (의견 ①~⑤)</td><td>자유롭게 적기. 문항마다 &#x27;수정 의견 쓰기&#x27;도 할 수 있음(선택)</td></tr></tbody></table></div><p class="meta">소요 시간 약 20분 · 41문항(응답 63칸) · 의견 쓰기 5곳</p></div>
 <div class="grid2">
-<div class="card"><h3>응답 방법</h3><ol class="steps"><li><b>먼저 읽기</b>를 읽은 뒤 <b>Ⅰ 정의 → Ⅱ 연수 내용 → Ⅲ 수준 → Ⅳ 바꾼 방식</b> 순서로 응답해 주시기 바랍니다.</li><li>문항마다 <b>근거 보기</b>를 누르면 그 내용이 어떤 기준에서 왔는지 볼 수 있습니다. 판단을 돕는 참고 자료이므로 읽지 않고 응답하셔도 됩니다.</li><li>문항마다 <b>수정 의견 쓰기</b>로 고칠 점을, 각 부분 끝의 <b>의견 쓰기</b> 5곳(의견 ①~⑤)에 의견을 적을 수 있습니다(선택). 이 둘을 뺀 성명(응답자 번호)·패널 구분과 모든 평정 문항은 <b>필수</b>입니다.</li><li>응답은 입력할 때마다 로그인한 구글 계정으로 Google Firebase에 자동 저장되므로 나누어 응답하셔도 됩니다(다른 기기에서도 같은 계정으로 이어서 응답할 수 있습니다).</li><li>마치면 맨 아래 <b>제출하기</b>를 눌러 주십시오. 제출하면 응답이 파이어베이스(Google Firebase)를 통해 연구자에게 자동으로 전달되므로, 파일을 내려받아 보내실 필요가 없습니다. 필수 문항이 비어 있으면 제출되지 않으며, 비어 있는 곳을 알려 드립니다.</li></ol></div>
+<div class="card"><h3>응답 방법</h3><ol class="steps"><li><b>먼저 읽기</b>를 읽은 뒤 <b>Ⅰ 정의 → Ⅱ 연수 내용 → Ⅲ 수준 → Ⅳ 바꾼 방식</b> 순서로 응답해 주시기 바랍니다.</li><li>문항마다 <b>근거 보기</b>를 누르면 그 내용이 어떤 기준에서 왔는지 볼 수 있습니다. 판단을 돕는 참고 자료이므로 읽지 않고 응답하셔도 됩니다.</li><li>문항마다 <b>수정 의견 쓰기</b>로 고칠 점을, 각 부분 끝의 <b>의견 쓰기</b> 5곳(의견 ①~⑤)에 의견을 적을 수 있습니다(선택). 이 둘과 휴대전화 번호를 뺀 성명(응답자 번호)·패널 구분·경력과 모든 평정 문항은 <b>필수</b>입니다.</li><li>응답은 입력할 때마다 로그인한 구글 계정으로 Google Firebase에 자동 저장되므로 나누어 응답하셔도 됩니다(다른 기기에서도 같은 계정으로 이어서 응답할 수 있습니다).</li><li>마치면 맨 아래 <b>제출하기</b>를 눌러 주십시오. 제출하면 응답이 파이어베이스(Google Firebase)를 통해 연구자에게 자동으로 전달되므로, 파일을 내려받아 보내실 필요가 없습니다. 필수 문항이 비어 있으면 제출되지 않으며, 비어 있는 곳을 알려 드립니다.</li></ol></div>
 <div class="card"><h3>답하는 기준</h3><dl class="scales"><dt>필요 / 불필요 <small>Ⅰ-1~Ⅰ-4</small></dt><dd>이 요건이 정의에 꼭 들어가야 하는지 골라 주십시오.</dd><dt>중요도 1~5 <small>대영역·중영역</small></dt><dd>연수에서 다루어야 할 내용으로 얼마나 중요한지 골라 주십시오.</dd><dt>학교 실현가능성 1~5 <small>중영역</small></dt><dd>연수를 마친 교사가 자기 학교의 여건(시간·기기·계정·네트워크·제도)에서 이 내용을 실제로 해낼 수 있는 정도입니다. 연수 시간 안에 가르칠 수 있는지를 묻는 것이 아닙니다. 1차에서는 중영역만 묻습니다.<span class="ex">예: 중요한 내용이지만 학교에 계정이나 플랫폼이 없어 하기 어렵다면, 중요도는 높게, 실현가능성은 낮게 답하시면 됩니다.</span></dd><dt>동의 정도 1~5 <small>Ⅰ-5·Ⅰ-6, Ⅲ, Ⅳ</small></dt><dd>&quot;~이 적절하다&quot;로 끝나는 문장에 얼마나 동의하시는지 골라 주십시오.</dd></dl><ol class="likert"><li><b>1</b>전혀 그렇지 않다</li><li><b>2</b>그렇지 않다</li><li><b>3</b>보통이다</li><li><b>4</b>그렇다</li><li><b>5</b>매우 그렇다</li></ol></div>
 </div>
 <details class="card gloss-card" id="gloss"><summary><b>자주 나오는 말</b> — 눌러서 펼치기</summary><dl class="gloss"><dt>바이브코딩</dt><dd>코드를 직접 짜지 않고 생성형 AI에게 말(자연어)로 설명해 프로그램을 만드는 방식</dd><dt>조작적 정의</dt><dd>이 연구에서 어떤 말을 어떤 뜻과 범위로 쓰는지 정해 둔 것</dd><dt>교육 바이브코딩 / 교사 바이브코딩</dt><dd>교육 목적으로 하는 바이브코딩 / 그중 교사가 자기 수업이나 학급 운영에서 학생이 쓸 프로그램을 만드는 것(이 연구의 대상)</dd><dt>소프트웨어 생애주기(SDLC)</dt><dd>프로그램을 만들기 전 계획부터 만들고, 시험하고, 내놓고, 고치고, 다 쓴 뒤 정리하기까지의 전 과정. 한 번에 끝나지 않고, 확인하며 앞 단계로 되돌아가기를 되풀이합니다</dd><dt>대영역 / 중영역</dt><dd>연수 내용을 크게 7가지로 나눈 것 / 대영역마다 2~4개씩 나눈 세부 내용(모두 22개)</dd><dt>배포 · 운영 · 보수</dt><dd>학생이 쓸 수 있게 내놓기 · 쓰는 동안 관리하기 · 문제를 고치기</dd><dt>지시문 / 명세서</dt><dd>AI에게 만들 것을 적어 주는 글(프롬프트) / 규모가 큰 프로그램에서 기능별 동작·화면·저장 데이터·완료 기준을 정리해 문서로 남긴 지시문. 둘을 함께 가리킬 때는 &#x27;지시문(또는 명세서)&#x27;라고 씁니다</dd><dt>위험 지점</dt><dd>개인정보가 저장·전송되는 곳, 외부와 연결되는 곳, 권한을 확인하는 곳, 삭제 기능처럼 교사가 반드시 직접 확인할 코드 위치</dd><dt>최소 기준(작동·복구·인계)</dt><dd>역량으로 인정하는 단계. 작동 = 학생이 실제로 쓸 수 있다, 복구 = 문제가 생기면 되살릴 수 있다, 인계 = 다른 교사에게 맡길 수 있다. 문서에서는 G1·G2·G3로 적기도 합니다</dd><dt>국가직무능력표준(NCS) · 수행준거</dt><dd>산업 현장의 직무를 국가가 정리한 기준 · 그 기준에서 &#x27;무엇을 할 수 있어야 하는지&#x27;를 적은 문장</dd><dt>바꿔 쓰기 규칙(R0~R7)</dt><dd>NCS의 수행준거를 교사에게 맞게 빼고, 줄이고, 바꾼 8가지 방법(Ⅳ에 표로 정리)</dd><dt>근거 유형</dt><dd>근거 보기에서 각 근거의 성격을 나타내는 표시 — 내용·조건·활용·공백 등(Ⅱ 첫머리 설명)</dd></dl></details>
 <div class="card soft"><h3>1차 이후 진행과 결과 처리</h3><ul><li>2차 검사에서는 1차 결과(문항별로 다른 분들의 응답이 모인 가운데 값과 범위, 그리고 선생님의 1차 응답)와 의견 요약을 함께 보내 드립니다.</li><li>2차에서는 1차에서 의견이 모이지 않은 문항(고친 경우 고치기 전·후를 함께 제시), 중영역의 학교 실현가능성, 1차에서 미룬 문항(일반 정의의 채택, 역량의 경계, 대영역의 구조)을 물어보고자 합니다. 선생님의 응답이 다른 분들과 많이 다르다면 그 이유를 적어 주실 수 있습니다(선택).</li><li><b>1차에서 정의가 실질적으로 바뀌면(요건을 빼거나 더하거나 범위를 바꾸면), 2차에서는 바뀐 정의를 바탕으로 관련된 대영역·중영역을 다시 물어보고자 합니다. 특히, 적용 범위를 정하는 요건(① 목적)이 바뀌면 대영역·중영역 전체를 다시 물어보겠습니다.</b></li><li>필요한 경우 일부 문항에 한해 추가 확인(짧은 3차 또는 소수 전문가 협의)을 요청드릴 수 있습니다.</li><li>응답은 몇 분이 &#x27;필요하다(4·5점)&#x27;고 하셨는지와 응답이 얼마나 모였는지로 분석합니다(내용타당도비율 CVR·합의도·중앙값). 응답자별 응답은 연구자만 확인하며, 결과는 개인을 알아볼 수 없는 집단 통계로만 보고합니다.</li></ul></div>
-<div class="card resp" id="resp"><h3>응답자 정보</h3><div class="resp-grid"><label>성명 또는 응답자 번호 (필수)<input type="text" name="resp|name" autocomplete="name" placeholder="예: 홍길동 또는 E07"></label><label>패널 구분 (필수)<select name="resp|group"><option value="">선택해 주십시오</option><option value="프로그래머(SW 개발)">프로그래머(SW 개발)</option><option value="대학교수">대학교수</option><option value="박사급 교사">박사급 교사</option><option value="정보교사">정보교사</option><option value="교감·장학사">교감·장학사</option></select></label></div><input type="checkbox" name="resp|consent" value="1" hidden tabindex="-1" aria-hidden="true"><p class="meta">로그인 계정: <b data-who></b> · 개인정보 수집·이용 동의: <span data-consent-at>—</span> · <button type="button" class="linkbtn" data-act="signout">로그아웃</button></p><p class="meta">문의: 고학능, 송정중앙초등학교, snddl3@outlook.kr · 회신 기한: 2026년 11월 9일</p></div>
+<div class="card resp" id="resp"><h3>응답자 정보</h3><div class="resp-grid"><label>성명 또는 응답자 번호 (필수)<input type="text" name="resp|name" autocomplete="name" placeholder="예: 홍길동 또는 E07"></label><label>패널 구분 (필수)<select name="resp|group"><option value="">선택해 주십시오</option><option value="프로그래머(SW 개발)">프로그래머(SW 개발)</option><option value="대학교수">대학교수</option><option value="박사급 교사">박사급 교사</option><option value="정보교사">정보교사</option><option value="교감·장학사">교감·장학사</option></select></label><label>관련 직무 근무·연구 경력 (필수)<input type="text" name="resp|career" inputmode="numeric" maxlength="2" autocomplete="off" placeholder="예: 12"><small class="resp-hint">패널 구분에서 고른 분야에서 근무하거나 연구한 기간을 햇수(숫자)로 적어 주십시오. 1년 미만은 0으로 적어 주십시오.</small></label><label>휴대전화 번호 (선택)<input type="text" name="resp|phone" inputmode="tel" autocomplete="tel" placeholder="예: 010-1234-5678"><small class="resp-hint">연구를 마친 뒤 사례를 보내 드리는 데에만 씁니다. 사례를 받지 않으시려면 비워 두셔도 됩니다.</small></label></div><input type="checkbox" name="resp|consent" value="1" hidden tabindex="-1" aria-hidden="true"><p class="meta">로그인 계정: <b data-who></b> · 개인정보 수집·이용 동의: <span data-consent-at>—</span> · <button type="button" class="linkbtn" data-act="signout">로그아웃</button></p><p class="meta">문의: 고학능, 송정중앙초등학교, snddl3@outlook.kr · 회신 기한: 2026년 11월 9일</p></div>
 </section>
 <section id="premise" class="sec">
 <h2><span class="num">읽기</span>먼저 읽어 주십시오 <small>약 3분</small></h2>
@@ -490,6 +491,8 @@ table.consent-table td{padding:8px 10px;border:1px solid var(--line)}
     var who = val('resp|name'), grp = val('resp|group'), at = stamp(new Date());
     var rows = [HEAD];
     rows.push([who, grp, at, '응답자', '동의', '동의', val('resp|consent') ? '1' : '0', val('resp|consent') ? '동의' : '미동의', '연구 참여·응답 활용 동의']);
+    var yrs = val('resp|career').trim();
+    rows.push([who, grp, at, '응답자', '경력', '경력', yrs, yrs ? yrs + '년' : '', '관련 직무 근무·연구 경력(년)']);
     cells.forEach(function (c) {
       var v = cellVal(c);
       rows.push([who, grp, at, c.getAttribute('data-sec'), c.getAttribute('data-item'), c.getAttribute('data-scale'), v, labelOf(c, v), c.getAttribute('data-text')]);
@@ -530,11 +533,12 @@ table.consent-table td{padding:8px 10px;border:1px solid var(--line)}
       if (r.length < 7) return;
       if (n === 0) { data['resp|name'] = r[0]; data['resp|group'] = r[1]; }
       n++;
-      if (r[3] === '응답자') { data['resp|consent'] = r[6] === '1' ? '1' : ''; return; }
+      if (r[3] === '응답자') { if (r[4] === '경력') data['resp|career'] = r[6]; else data['resp|consent'] = r[6] === '1' ? '1' : ''; return; }
       var k = r[4] + '|' + r[5];
       if (byCell[k]) data[byCell[k]] = r[6];
       else if (byText[k]) data[byText[k]] = r[6];
     });
+    data['resp|phone'] = val('resp|phone');
     form.reset();
     apply(data);
     persist(true);
@@ -555,6 +559,8 @@ table.consent-table td{padding:8px 10px;border:1px solid var(--line)}
   }
 
   // ---------------- 미응답
+  function careerOk() { return /^\d{1,2}$/.test(val('resp|career').trim()); }
+  function phoneOk() { var p = val('resp|phone').trim(); return !p || /^01\d{8,9}$/.test(p.replace(/[\s-]/g, '')); }
   function missingCells() { return cells.filter(function (c) { return cellVal(c) === ''; }); }
   function showMissing() {
     var miss = missingCells(), box = document.getElementById('missing');
@@ -575,6 +581,8 @@ table.consent-table td{padding:8px 10px;border:1px solid var(--line)}
     var notes = [];
     if (!val('resp|name')) notes.push('성명(응답자 번호)');
     if (!val('resp|group')) notes.push('패널 구분');
+    if (!careerOk()) notes.push('경력(햇수를 숫자로)');
+    if (!phoneOk()) notes.push('휴대전화 번호 형식(예: 010-1234-5678)');
     if (!val('resp|consent')) notes.push('동의 확인');
     box.hidden = false;
     if (!miss.length && !notes.length) {
@@ -591,7 +599,7 @@ table.consent-table td{padding:8px 10px;border:1px solid var(--line)}
   function act(name) {
     if (name === 'check') { showMissing(); return; }
     if (name === 'save') {
-      var miss = missingCells().length, info = !val('resp|name') || !val('resp|group') || !val('resp|consent');
+      var miss = missingCells().length, info = !val('resp|name') || !val('resp|group') || !careerOk() || !phoneOk() || !val('resp|consent');
       if ((miss || info) && !window.confirm((miss ? '미응답 ' + miss + '칸' : '응답자 정보 일부') + '이(가) 비어 있습니다. 그래도 저장할까요?\n(취소하면 비어 있는 곳을 표시합니다.)')) { showMissing(); return; }
       download(fileName(), buildCSV());
       setStatus('응답 파일을 저장했습니다 · ' + stamp(new Date()) + ' — 보관용 파일이며, 연구자에게 따로 보내실 필요가 없습니다.');
@@ -660,7 +668,7 @@ table.consent-table td{padding:8px 10px;border:1px solid var(--line)}
     total: TOTAL, val: val, stamp: stamp, setStatus: setStatus,
     snapshot: snapshot, buildCSV: buildCSV, showMissing: showMissing,
     missingCount: function () { return missingCells().length; },
-    unmetCount: function () { return missingCells().length + (val('resp|name') ? 0 : 1) + (val('resp|group') ? 0 : 1) + (val('resp|consent') ? 0 : 1); },
+    unmetCount: function () { return missingCells().length + (val('resp|name') ? 0 : 1) + (val('resp|group') ? 0 : 1) + (careerOk() ? 0 : 1) + (phoneOk() ? 0 : 1) + (val('resp|consent') ? 0 : 1); },
     useKey: function (k) { KEY = k; },
     localData: function () {
       try { var o = JSON.parse(localStorage.getItem(KEY) || 'null'); return o && o.data ? o : null; } catch (e) { return null; }
@@ -743,7 +751,7 @@ const CFG = {
   "messagingSenderId": "693152543190",
   "appId": "1:693152543190:web:37f958754a78aedccdf477"
 };
-const COL = "delphi_r1", SHEET = "2026-10-28", CONSENT_VERSION = "2026-11-02", KEY_BASE = "vibe-delphi-1R-2026-10-26";
+const COL = "delphi_r1", SHEET = "2026-10-28", CONSENT_VERSION = "2026-11-04", KEY_BASE = "vibe-delphi-1R-2026-10-26";
 const FIELDS = ["uid", "email", "displayName", "consent", "resp", "data", "csv", "answered", "status", "sheetVersion", "updatedAt"];
 const D = window.__delphi;
 const app = initializeApp(CFG);
@@ -780,7 +788,7 @@ function body() {
   return {
     uid: u.uid, email: u.email || "", displayName: u.displayName || "",
     consent: consent,
-    resp: { name: D.val("resp|name"), group: D.val("resp|group") },
+    resp: { name: D.val("resp|name"), group: D.val("resp|group"), career: D.val("resp|career").trim(), phone: D.val("resp|phone").trim() },
     data: D.snapshot(), csv: D.buildCSV(), answered: D.total - D.missingCount(),
     status: status, sheetVersion: SHEET, updatedAt: serverTimestamp()
   };
@@ -821,9 +829,9 @@ window.cloudSave = function () {
 
 async function submit() {
   if (!ref || !consent) return;
-  const unmet = D.showMissing();  // 평정 63칸 + 성명·패널 구분·동의. 수정 의견·의견 쓰기는 선택이라 세지 않는다.
+  const unmet = D.showMissing();  // 평정 63칸 + 성명·패널 구분·경력·동의(휴대전화 번호는 적었을 때 형식만). 수정 의견·의견 쓰기는 선택이라 세지 않는다.
   if (unmet > 0) {
-    window.alert("아직 답하지 않은 필수 문항이 " + unmet + "곳 있어 제출되지 않았습니다.\n표시된 문항을 선택하거나 입력한 뒤 다시 '제출하기'를 눌러 주십시오.\n(수정 의견 쓰기와 의견 쓰기는 비워 두셔도 됩니다.)");
+    window.alert("아직 답하지 않은 필수 문항이 " + unmet + "곳 있어 제출되지 않았습니다.\n표시된 문항을 선택하거나 입력한 뒤 다시 '제출하기'를 눌러 주십시오.\n(수정 의견 쓰기, 의견 쓰기, 휴대전화 번호는 비워 두셔도 됩니다.)");
     $("missing").scrollIntoView({ block: "center" });
     return;
   }
@@ -906,6 +914,13 @@ onAuthStateChanged(auth, async (user) => {
   if (snap.exists()) {
     const d = snap.data();
     consent = d.consent || null;
+    // 이전 판 문구에 동의한 경우 다시 동의를 받는다. 동의하기 전에는 저장하지 않으므로 기존 응답은 그대로 남는다.
+    if (consent && consent.version !== CONSENT_VERSION) {
+      consent = null;
+      $("consent-redo").hidden = false;
+      $("consent-declined-first").hidden = true;
+      $("consent-declined-redo").hidden = false;
+    }
     status = d.status || "draft";
     firstSubmitted = !!d.firstSubmittedAt;
     const cloudAt = d.updatedAt && d.updatedAt.toDate ? d.updatedAt.toDate().getTime() : 0;
